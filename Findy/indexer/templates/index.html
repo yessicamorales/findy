@@ -1,9 +1,22 @@
 <!DOCTYPE html>
 <html>
-<head>
-	<title></title>
-</head>
-<body>
-
-</body>
+	<head>
+		<title>Indexar</title>
+	</head>
+	<body>
+		<form action="{% url 'indexer_home' %}" method="POST">
+			{% csrf_token %}
+			{{form}}
+			<input type="submit" value="Agregar">
+		</form>
+		<table>
+			{% for page in pages %}
+				<tr>
+					<td> {{page.url}} </td>
+					<td> {{page.title}} </td>
+					<td> {{page.author}} </td>
+				</tr>
+			{% endfor %}
+		</table>
+	</body>
 </html>
