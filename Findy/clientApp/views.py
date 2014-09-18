@@ -6,5 +6,5 @@ def home(request):
 	return render_to_response('search_index.html')
 
 def search(request):
-	return render_to_response('search_index.html')
+	return render_to_response('search_results.html')
 
