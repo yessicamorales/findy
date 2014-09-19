@@ -9,7 +9,7 @@ from crawler import launch_crawler
 
 
 # VISTAS DEL INDEXER
-# Agregar URL
+# Agregar y listar URL
 #====================
 def indexer_home(request):
 	# Obtencion del formulario para llenarlo (GET)
@@ -44,11 +44,5 @@ def indexer_home(request):
 			new_indexed_page.save()
 
 			return redirect(reverse('indexer_home'))
-
-# 2. Listar URL
-
-
-# 3. Modificar URL
-
 
 # 4. Eliminar URL
