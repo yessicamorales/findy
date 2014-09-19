@@ -15,7 +15,7 @@
         <link rel="stylesheet" href="{% static "css/bootstrap.min.css" %}">
         <link rel="stylesheet" href="{% static "css/bootstrap-theme.min.css" %}">
         <link rel="stylesheet" href="{% static "css/main.css" %}">
-        <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+        <link href='http://fonts.googleapis.com/css?family=Open+Sans:600italic,400,600' rel='stylesheet' type='text/css'>
 
         <script src="{% static "js/vendor/modernizr-2.6.2-respond-1.1.0.min.js" %}"></script>
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
@@ -43,7 +43,7 @@
 		.svg-container{
 			overflow: hidden;
 			position: absolute;
-			z-index: 0;
+			z-index: 1;
 			bottom: 0;
 			left: 0;
 			right: 0;
@@ -56,6 +56,11 @@
 			margin-left: -2px;
 			width: 101%;
 		}
+
+    .result h4 a{ color:#275E85; }
+    .result a{color:#28A1D4;}
+    .result p{color:#757575;}
+
 	</style>
     </head>
 <body>
@@ -64,14 +69,14 @@
 		<object type="image/svg+xml" data="{% static "img/Sea_waves2.svg" %}" width="100%" height="100%" class="svg-content">
 		</object>
 	</div>
-    <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <nav class="navbar navbar-default navbar-fixed-top" style="box-shadow:none" role="navigation">
       <div class="container-fluid">
         <div class="navbar-header col-xs-12">
-          <a class="navbar-brand col-xs-2 col-md-1 col-sm-1" href="#">
+          <a class="navbar-brand col-xs-2 col-md-1 col-sm-1" href="{% url "home"%}">
             <img src="{% static "img/logo.png" %}" style="height:40px; margin-top:-8px;">
           </a>
           <form class="col-xs-10 col-md-8 col-sm-6" role="" action="{% url "search"%}" method="GET">
-            <input name="q" class="form-control" style="display:inline;width:68%; margin:8px 0px 0 0;" placeholder="Ingresa tu búsqueda"/>
+            <input name="q" class="form-control" style="display:inline;width:68%; margin:8px 0px 0 0;" placeholder="Ingresa tu búsqueda" value="{{q}}"/>
             <button class="btn btn-primary" style="padding-right:30px;padding-left:30px;margin-top:-2px;">
               <i class="glyphicon glyphicon-search"></i>
             </button>
@@ -80,17 +85,33 @@
       </div><!-- /.container-fluid -->
     </nav>
 
-  <div class="container" style=" padding:20px 20px 60px 20px; height:100%; width:100%;">
-
+  <div class="container" style=" padding:20px 20px 60px 40px; height:100%; width:100%; overflow: auto">
+    <div class="row-fluid" style="color:#666;">
+        La búsqueda <b><i>{{q}}</i></b> <small>arrojó 25 resultados (mostrando del 1 al 10)</small>
+    </div>
+    
     <div class="text-left">
-      resultados
+      <hr>
+      {% for number in numbers %}
+        <div class="row result">
+          <div class="col-xs-12 col-md-8 col-sm-8">
+            <h4><a href="">Lorem Ipsum Dolor Sit Amet</a></h4>
+            <a href="">http://lorem.ipsum.com</a>
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+              tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+              quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo.
+            </p>
+          </div>
+        </div>  
+      {% endfor %}
     </div>
 
-    <div class="col-xs-12" style="position:absolute; bottom:3px; color:white;">
+    <div class="col-xs-12" style="position:absolute; bottom:3px; color:white;z-index:2">
       <div class="hidden-xs col-sm-8 col-md-8">
       </div>
       <div class="col-xs-12 col-sm-4 col-md-4 text-right">
-        <footer>
+        <footer style="padding-right:45px;">
           <p><img src="{% static "img/logo-hanabi.png" %}" style="margin-top: -8px;"> &copy; Hanabi 2014</p>
         </footer>
       </div>
