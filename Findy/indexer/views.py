@@ -18,7 +18,7 @@ def indexer_home(request):
 		pages = IndexedPage.objects.all()
 
 		form = FormIndexedPage()
-		return render_to_response('index.html', {'form':form, 'pages':pages}, context_instance=RequestContext(request))
+		return render_to_response('indexer_url.html', {'form':form, 'pages':pages}, context_instance=RequestContext(request))
 
 	# Obtener la URL digitada por el usuario (POST)
 	if request.method == 'POST':
@@ -46,3 +46,10 @@ def indexer_home(request):
 			return redirect(reverse('indexer_home'))
 
 # 4. Eliminar URL
+# Eliminar URL
+#====================
+def delete_page(request, id):
+	page = IndexedPage.objects.get(id=id)
+	page.delete()
+	return redirect(reverse('indexer_home'))
+
