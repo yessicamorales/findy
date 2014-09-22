@@ -20,9 +20,36 @@ BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 SECRET_KEY = 'x0ow#p@sc_co&*r%%y%_oot%!6g!1eeem6ye^*qd=g6d3@j#5@'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+import socket
+if socket.gethostname().startswith('localhost'):
+    DEVEL = True
+else:
+    DEVEL = False
 
-TEMPLATE_DEBUG = True
+DEBUG = True
+TEMPLATE_DEBUG = DEBUG
+ 
+if DEVEL:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        }
+    }
+ 
+    STATICFILES_DIRS = (
+        os.path.join(BASE_DIR, "static"),
+    )
+ 
+else:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        }
+    }
+ 
+    STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 ALLOWED_HOSTS = []
 
@@ -88,8 +115,4 @@ STATIC_URL = '/static/'
 TEMPLATE_DIRS = (
     os.path.join(BASE_DIR + 'indexer'),
     os.path.join(BASE_DIR + 'clientApp'),
-)
-
-STATICFILES_DIRS = (
-        os.path.join(BASE_DIR, "static"),
 )
