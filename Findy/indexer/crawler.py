@@ -19,7 +19,7 @@ def launch_crawler(url):
 	except Exception, e:
 		description = None
 	try:
-		keywords = soup.findAll('meta', {'name':'keywords'})[0]['content']
+		keywords = soup.findAll('meta', {'name':'keywords'})[0]['content'].split(",")
 	except Exception, e:
 		keywords = None
 	try:
@@ -27,4 +27,4 @@ def launch_crawler(url):
 	except Exception, e:
 		author = None
 
-	return {'title':title, 'description':description, 'keywords':keywords.split(","), 'author':author} 
+	return {'title':title, 'description':description, 'keywords':keywords, 'author':author} 
