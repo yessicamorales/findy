@@ -78,6 +78,11 @@
           <a class="navbar-brand col-xs-2 col-md-1 col-sm-1" href="{% url "home"%}">
             <img src="{% static "img/logo.png" %}" style="height:40px; margin-top:-8px;">
           </a>
+
+          <p class="navbar-text navbar-right">
+          	<i class="glyphicon glyphicon-user"></i> {{user.username}}
+          	<a href="{% url "logout" %}" class="navbar-link">(cerrar sesión)</a></p>
+
         </div>
       </div><!-- /.container-fluid -->
     </nav>

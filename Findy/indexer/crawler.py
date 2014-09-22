@@ -27,4 +27,4 @@ def launch_crawler(url):
 	except Exception, e:
 		author = None
 
-	return {'title':title, 'description':description, 'keywords':keywords, 'author':author} 
+	return {'title':title, 'description':description, 'keywords':keywords.split(","), 'author':author} 

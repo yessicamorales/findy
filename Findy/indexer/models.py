@@ -38,4 +38,3 @@ class Word (models.Model):
 class PageWord  (models.Model):
 	indexedPage = models.ForeignKey('IndexedPage')
 	word = models.ForeignKey('Word')
-	frecuency = models.IntegerField(null=False, blank=False)

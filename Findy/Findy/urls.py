@@ -10,5 +10,7 @@ urlpatterns = patterns('',
 	url(r'^$', 'clientApp.views.home', name="home"),
 	url(r'^search$', 'clientApp.views.search', name="search"),
     url(r'^indexer/', include('indexer.urls')),
+    url(r'^login', 'indexer.views.admin_login', name='login'),
+    url(r'^logout', 'indexer.views.admin_logout', name='logout'),
 
 ) + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
